@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 3.29)
 
 project(library_1 VERSION 1.0.0 LANGUAGES CXX)
 
-add_library(library_1)
+add_library(${PROJECT_NAME})
+add_library(demo::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
-target_sources(library_1
+target_sources(${PROJECT_NAME}
     PRIVATE
     src/feature_set_1.cpp
     src/feature_set_2.cpp
