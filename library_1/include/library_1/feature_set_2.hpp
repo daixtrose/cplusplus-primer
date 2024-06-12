@@ -4,7 +4,7 @@
 namespace library_1 {
 
     // declaration only
-    inline int function_2(int arg); 
+    int function_2(int arg); 
 
 } // namespace library_1 
 
