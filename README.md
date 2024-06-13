@@ -37,44 +37,83 @@ make
 
 ### Example 3
 
-Here we illustrate a different, recommended way to use `cmake`. See [the CMake command line tool documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html)
+#### Overview 
+
+Here we illustrate recommended ways to use `cmake`. See [the CMake command line tool documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html)
+
+#### Preparation
 
 Create a subdirectory `build_example_3` and prepare the build system for the source in `example_3` in this subdirectory:
 
 ```bash
-cmake -B build_example_3 -S example_3
+cmake -D CMAKE_BUILD_TYPE=Release -B build_example_3 -S example_3
+# for debug builds use   
+# cmake -D CMAKE_BUILD_TYPE=Debug -B build_example_3 -S example_3
 ```
 
-Build the `example_3` project:
+#### Building the `example_3` project:
+
+Call `cmake` from the top level like this:
 
 ```bash
-cmake --build build_example_3 --config Debug --target example_3
+cmake --build build_example_3 --config Release --target example_3
 ```
+
+#### Creating release packages
+
+Call `cmake` from the top level like this:
+
+```bash
+cmake --build build_example_3 --config Release --target package
+```
+
+Alternatively switch to the directory and omit the previously configured `Release` flag:
+
+```bash
+cd build_example_3
+make package
+```
+
+
+
+On Linux, this yields `DEB`, `RPM`, and `TGZ` packages. 
+
+Alternatively CPack allows you to create a Debian/RPM/TGZ package only. Example:
+
+```bash
+cd build_example_3 
+cpack -G "DEB"
+```
+
+You can inspect its content using  
+
+```bash
+sudo dpkg -c example_3-1.0.0-Linux.deb
+```
+
+or (after issuing the command `cpack -G "RPM"`) inspect the content of the rpm file like this:
+
+```bash
+rpm -qlp example_3-1.0.0-Linux.rpm
+```
+
+#### Installing the Debian package
+
+```bash
+sudo dpkg -i example_3-1.0.0-Linux.deb
+```
+
+#### Uninstalling the Debian package
+
+```bash
+sudo dpkg -r example_3
+```
+
+#### Miscellanneous
 
 Check the `RUNPATH` settings of the executable 
 
 ```bash
 cd build_example_3
 chrpath -l example_3
-```
-
-Create a Debian package and inspect it 
-
-```bash
-cd build_example_3
-cpack -G "DEB"
-sudo dpkg -c example_3-1.0.0-Linux.deb
-```
-
-Install the Debian package
-
-```bash
-sudo dpkg -c example_3-1.0.0-Linux.deb
-chrpath -l example_3 
-```
-
-Uninstall the package
-
-```bash
-sudo dpkg -r example_3
 ```
