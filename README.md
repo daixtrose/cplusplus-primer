@@ -2,7 +2,7 @@
 
 ## Summary 
 
-A short introduction to C++ which was quickly hacked together
+A short introduction to C++. The examples build on top of each other. A special focus is put on the build configuration which is based on the goto-tool for building C++ [`CMake`](https://cmake.org/cmake/help/latest/). The idea is to have the build system configured correctly right from the beginning, and only then move on to learn how to code.      
 
 ## Useful Weblinks
 
