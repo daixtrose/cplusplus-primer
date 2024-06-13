@@ -34,4 +34,4 @@ target_link_libraries(
     demo::library_1
 )
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/CMakeListsCPackConfiguration.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/CMakeListsCPackConfiguration.txt)
