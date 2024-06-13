@@ -8,7 +8,7 @@ This example shows a more elaborate configuration for a C++ project yielding an 
 
 ### Overview 
 
-Here we illustrate recommended ways to use `cmake`. In contrast to the earlier examples we call `cmake` from the top level. For completeness we also show the alternative variants where you change into the build directory and call `cmake` from there. See [the CMake command line tool documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html) for details. 
+Here we illustrate recommended ways to use `cmake`. In contrast to the earlier examples we call `cmake` from the top level and use it in a **portable way**. For completeness we also show the alternative variants which work on systems that have Gnu `make` available where you change into the build directory and call all commands from there. It is still recommended to get used to the portable versions. See [the CMake command line tool documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html) for details. 
 
 ### Preparation
 
@@ -36,7 +36,7 @@ Call `cmake` from the top level like this:
 cmake --build build_example_3 --config Release --target package
 ```
 
-### Alternative Commands for Creating Releases 
+### Alternative Commands for Creating Releases on Linux 
 
 Switch to the directory and omit the previously configured `Release` flag:
 
