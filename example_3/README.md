@@ -85,3 +85,10 @@ Check the `RUNPATH` settings of the executable
 cd build_example_3
 chrpath -l example_3
 ```
+
+Learn about the cmake options in this project by calling
+
+```bash
+cd build_example_3
+cmake -LH -N ../example_3
+```
