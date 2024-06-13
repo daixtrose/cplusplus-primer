@@ -17,10 +17,10 @@ A short introduction to C++. The examples build on top of each other. A special 
 
 ## Build Instructions
 
-- [Example 1](example_1/Readme.md): The most basic example for an executable 
-- [Library 1](library_1/Readme.md): The most basic example for a library 
-- [Example 2](example_2/Readme.md): How to include libraries (primitive version using a specific directory) 
-- [Example 3](example_3/Readme.md): 
+- [Example 1](example_1/README.md): The most basic example for an executable 
+- [Library 1](library_1/README.md): The most basic example for a library 
+- [Example 2](example_2/README.md): How to include libraries (primitive version using a specific directory) 
+- [Example 3](example_3/README.md): 
   - How to include libraries using `FetchContent`
   - How to configure CPack to obtain release packages  
 
