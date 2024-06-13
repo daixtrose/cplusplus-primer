@@ -1,0 +1,10 @@
+---
+# BasedOnStyle: LLVM
+# BasedOnStyle: GNU
+# BasedOnStyle: Google
+# BasedOnStyle: Chromium
+# BasedOnStyle: Microsoft
+# BasedOnStyle: Mozilla
+BasedOnStyle: WebKit
+
+# If you want to do more fancy stuff (because you *think* you are more intelligent than the people who developed above-mentioned styles), you can visit https://clang-format-configurator.site/ and generate your own style.

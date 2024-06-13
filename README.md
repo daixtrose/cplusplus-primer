@@ -70,6 +70,7 @@ Install the Debian package
 
 ```bash
 sudo dpkg -c example_3-1.0.0-Linux.deb
+chrpath -l example_3 
 ```
 
 Uninstall the package

@@ -3,9 +3,9 @@
 
 namespace library_1 {
 
-    // declaration only
-    int function_2(int arg); 
+// declaration only
+int function_2(int arg);
 
-} // namespace library_1 
+} // namespace library_1
 
 #endif // LIBRARY_1_FEATURE_SET_1_HPP

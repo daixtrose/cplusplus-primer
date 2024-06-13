@@ -2,9 +2,10 @@
 
 namespace example_1 {
 
-    // definition of a method previously defined in a header
-    int function_2(int arg) {
-        return 2 * arg;
-    }
+// definition of a method previously defined in a header
+int function_2(int arg)
+{
+    return 2 * arg;
+}
 
-} // namespace example_1 
+} // namespace example_1

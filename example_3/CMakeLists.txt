@@ -39,5 +39,16 @@ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Markus Werle")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
 set(CPACK_VERBATIM_VARIABLES TRUE)
 
+# Configure what kind of packages will be created based on the platform
+if(WIN32)
+set(CPACK_GENERATOR ZIP WIX)
+elseif(APPLE)
+set(CPACK_GENERATOR TGZ productbuild)
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+set(CPACK_GENERATOR TGZ RPM)
+else()
+set(CPACK_GENERATOR TGZ)
+endif()
+
 # This is what writes out the input file for cpack
 include(CPack)
