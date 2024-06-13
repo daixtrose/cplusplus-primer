@@ -34,30 +34,4 @@ target_link_libraries(
     demo::library_1
 )
 
-# Package-specific Settings
-install(TARGETS ${PROJECT_NAME} library_1)
-
-# These are project-specific
-set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-set(CPACK_PACKAGE_VENDOR "Daixtrose Engineering")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "An example project")
-set(CPACK_PACKAGE_CONTACT "daixtrose.engineering@gmx.de")
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Markus Werle")
-
-# These lines tend to be the same for every project
-set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
-set(CPACK_VERBATIM_VARIABLES TRUE)
-
-# Configure what kind of packages will be created based on the platform
-if(WIN32)
-    set(CPACK_GENERATOR ZIP WIX)
-elseif(APPLE)
-    set(CPACK_GENERATOR TGZ productbuild)
-elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    set(CPACK_GENERATOR TGZ RPM DEB)
-else()
-    set(CPACK_GENERATOR TGZ)
-endif()
-
-# This is what writes out the input file for CPack
-include(CPack)
+include(${CMAKE_CURRENT_SOURCE_DIR}/CMakeListsCPackConfiguration.txt)
