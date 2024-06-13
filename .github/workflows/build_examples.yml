@@ -1,0 +1,20 @@
+name: "Build Examples"
+
+on:
+  push:
+    branches: [$default-branch]
+  pull_request:
+    branches: [$default-branch]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: configure
+        run: cmake -D CMAKE_BUILD_TYPE=Release -B build_example_3 -S example_3
+      - name: build example_3
+        run: cmake --build build_example_3 --config Release --target example_3
+      - name: create example_3 package
+        run: cmake --build build_example_3 --config Release --target package
