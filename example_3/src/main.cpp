@@ -1,7 +1,7 @@
 #include "library_1/feature_set_1.hpp"
 #include "library_1/feature_set_2.hpp"
 
-#include <iostream> // the leagacy way to print stuff
+#include <iostream> // the legacy way to print stuff
 
 int main()
 {

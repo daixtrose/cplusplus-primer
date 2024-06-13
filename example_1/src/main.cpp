@@ -1,7 +1,7 @@
 #include "example_1/function_1.hpp"
 #include "example_1/function_2.hpp"
 
-#include <iostream> // the leagacy way to print stuff
+#include <iostream> // the legacy way to print stuff
 
 int main()
 {
