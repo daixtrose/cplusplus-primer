@@ -15,12 +15,16 @@ A short introduction to C++. The examples build on top of each other. A special 
 - [Craig Scott: "Professional CMake"](https://crascit.com/professional-cmake/)    
   - The one and only book you need about build systems 
 
-## Build Instructions
+## List of Subprojects
 
-- [Example 1](example_1/README.md): The most basic example for an executable 
-- [Library 1](library_1/README.md): The most basic example for a library 
-- [Example 2](example_2/README.md): How to include libraries (primitive version using a specific directory) 
-- [Example 3](example_3/README.md): 
+- [Example 1](example_1/): The most basic build setup for an executable 
+- [Library 1](library_1/): The most basic build setup for a library 
+- [Example 2](example_2/): How to include libraries (primitive version using a specific directory) 
+- [Example 3](example_3/): 
   - How to include libraries using `FetchContent`
   - How to configure CPack to obtain release packages  
+
+## Basic C++ Concepts Explained
+
+This part is not yet written.
 
