@@ -11,7 +11,7 @@ This example shows a configuration for a C++ project yielding an executable.
 
 This example extends and modifies [example_3](../example_3/) in such a way that the Debian package will install the software and its dependencies below the install path `/opt/daixtrose/example_4-x.y.z`. In addition, the `RUNPATH` variables of the executable **and** the library `library_1` are set such that the `bin` and `lib` subdirectories of the install path are searched for dependencies.
 
-## A Short Introduction to `RPATH`, `LD_LIBRARY_PATH`, and `RUNPATH` 
+### A Short Introduction to `RPATH`, `LD_LIBRARY_PATH`, and `RUNPATH` 
 
 `RPATH` and `RUNPATH` denote the run-time search path hard-coded in an executable file or library for [`ELF`](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) binaries. In contrast, `LD_LIBRARY_PATH` is an environment variable which is *also* considered during program start.  
 
@@ -81,8 +81,7 @@ $ ldd /opt/daixtrose/example_4-1.0.0/bin/example_4
         libgcc_s.so.1 => /opt/daixtrose/example_4-1.0.0/lib/libgcc_s.so.1 (0x00007f93346ed000)
 ```
 
-
-## `RUNPATH` for Dependencies
+### `RUNPATH` for Dependencies
 
 Please note, that there is another difference between `RPATH` and `RUNPATH` that must be fixed for legacy systems: `RUNPATH` is not transitive, i.e. it is not propagated through the dependency tree but only applies for direct dependencies. 
 
