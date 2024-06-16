@@ -103,7 +103,7 @@ $ chrpath -l /opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so
 /opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so: RUNPATH=$ORIGIN:$ORIGIN/../lib
 ```
 
-Give it a try: If you omit this command, `RUNPATH` is not set for `library_1`:
+Give it a try: If you omit [this command](CMakeListsCPackConfiguration.txt#L52C8-L55C55), `RUNPATH` is not set for `library_1`:
 
 ```bash 
 $ chrpath -l /opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so
