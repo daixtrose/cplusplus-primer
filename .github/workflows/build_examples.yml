@@ -32,13 +32,14 @@ jobs:
           echo "Checking content of '$DEBIAN_PACKAGE_FILENAME'" 
           dpkg -c ${DEBIAN_PACKAGE_FILENAME}
           echo "DEBIAN_PACKAGE_FILENAME=${DEBIAN_PACKAGE_FILENAME}" >> $GITHUB_OUTPUT
+          echo "RPM_PACKAGE_FILENAME=${RPM_PACKAGE_FILENAME}" >> $GITHUB_OUTPUT
       - name: Release
         uses: softprops/action-gh-release@v2
         ## if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             build_example_3/${{ steps.check-packages.outputs.RPM_PACKAGE_FILENAME }}
-          # build_example_3/${{ steps.check-packages.outputs.DEBIAN_PACKAGE_FILENAME }}
+            build_example_3/${{ steps.check-packages.outputs.DEBIAN_PACKAGE_FILENAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: latest
 # TODO: check https://github.com/marketplace/actions/cmake-swiss-army-knife
