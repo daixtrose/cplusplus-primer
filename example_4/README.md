@@ -6,7 +6,7 @@ This example shows a more elaborate configuration for a C++ project yielding an 
 
 ## What's New
 
-This example extends and modifies [example_3](../example_3/) in such a way that the Debian package will install the software and its dependencies below `/opt/daixtrose/example_4-x.y.z` and set the RUNPATH variable such that the `bin` and `lib` libraries are searched for dependencies,
+This example extends and modifies [example_3](../example_3/) in such a way that the Debian package will install the software and its dependencies below `/opt/daixtrose/example_4-x.y.z` and set the RUNPATH variable such that the `bin` and `lib` libraries are searched for dependencies.
 
 Please note that `ldconfig` on Linux systems is configured such, that system dependencies like e.g. `libm`. `ld-linux-x86-64`, and `libgcc_s` which are installed on the system obtain preference over the ones installed with the tool in the `lib` directory: 
 
