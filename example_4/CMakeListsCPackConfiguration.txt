@@ -48,6 +48,12 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
             # Set BUIL_RPATH only if you want to do dirty things with the binary after build
             # BUILD_RPATH "$ORIGIN:$ORIGIN/${libDir}"
         )
+
+        set_target_properties(library_1 
+            PROPERTIES
+            BUILD_RPATH_USE_ORIGIN ON
+            INSTALL_RPATH "$ORIGIN:$ORIGIN/${libDir}")
+
     endif()
 else()
     set(CPACK_GENERATOR TGZ)
