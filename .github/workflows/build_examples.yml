@@ -25,6 +25,6 @@ jobs:
           CMAKE_SYSTEM_NAME=$(cmake -N --system-information | grep "CMAKE_SYSTEM_NAME \"" | cut -d\" -f2)
           DEBIAN_PACKAGE_FILENAME="example_3-${CMAKE_PROJECT_VERSION}-${CMAKE_SYSTEM_NAME}.deb"
           echo "Checking content of '$DEBIAN_PACKAGE_FILENAME'" 
-          dpkg -c DEBIAN_PACKAGE_FILENAME
+          dpkg -c ${DEBIAN_PACKAGE_FILENAME}
 
 # TODO: check https://github.com/marketplace/actions/cmake-swiss-army-knife
