@@ -2,9 +2,9 @@ name: "Build Examples"
 
 on:
   push:
-    branches: [$github.event.repository.default_branch]
+    branches: [main]
   pull_request:
-    branches: [$github.event.repository.default_branch]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -21,7 +21,6 @@ jobs:
       - name: check content of *.deb package
         working-directory: build_example_3
         run: |
-          echo "Default branch is $github.event.repository.default_branch"
           CMAKE_PROJECT_VERSION=$(cmake --system-information | awk -F= '$1~/CMAKE_PROJECT_VERSION:STATIC/{print$2}')
           CMAKE_SYSTEM_NAME=$(cmake -N --system-information | grep "CMAKE_SYSTEM_NAME \"" | cut -d\" -f2)
           DEBIAN_PACKAGE_FILENAME="example_3-${CMAKE_PROJECT_VERSION}-${CMAKE_SYSTEM_NAME}.deb"
