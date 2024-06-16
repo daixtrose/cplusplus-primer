@@ -1,6 +1,6 @@
 ## Summary
 
-This example shows a configuration for a C++ project yielding an executable 
+This example shows a configuration for a C++ project yielding an executable. 
 - It relies on one library and uses CMake's [`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html) feature to include it.
 - It has a configuration for releasing packages for all major platforms.
 - These are refined for the Linux platform.
