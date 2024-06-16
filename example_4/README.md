@@ -4,6 +4,8 @@ This example shows a more elaborate configuration for a C++ project yielding an 
 - It relies on one library and uses CMake's [`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html) feature to include it
 - It has configuration for releasing packages for all major platforms
 
+## What's New
+
 This example extends and modifies [example_3](../example_3/) in such a way that the Debian package will install the software and its dependencies below `/opt/daixtrose/example_4-x.y.z` and set the RUNPATH variable such that the `bin` and `lib` libraries are searched for dependencies,
 
 Please note that `ldconfig` on Linux systems is configured such, that system dependencies like e.g. `libm`. `ld-linux-x86-64`, and `libgcc_s` which are installed on the system obtain preference over the ones installed with the tool in the `lib` directory: 
@@ -56,39 +58,22 @@ Call `cmake` from the top level like this:
 cmake --build build_example_4 --config Release --target package
 ```
 
-### Alternative Commands for Creating Releases on Linux 
-
-Switch to the directory and omit the previously configured `Release` flag:
-
-```bash
-cd build_example_4
-make package
-```
-
-On Linux, this yields `DEB`, `RPM`, and `TGZ` packages. Note, that CPack allows you to create the packages separately:
-
-```bash
-cd build_example_4 
-cpack -G "DEB" # this yields the Debian package only
-```
-
 You can inspect its content using  
 
 ```bash
-sudo dpkg -c example_4-1.0.0-Linux.deb
+dpkg -c build_example_4/example_4-1.0.0-Linux.deb
 ```
 
 The procedure is similar for rpm files:
 
 ```bash
-cpack -G "RPM"
-rpm -qlp example_4-1.0.0-Linux.rpm
+rpm -qlp build_example_4/example_4-1.0.0-Linux.rpm
 ```
 
 ### Installing the Debian Package
 
 ```bash
-sudo dpkg -i example_4-1.0.0-Linux.deb
+sudo dpkg -i build_example_4/example_4-1.0.0-Linux.deb
 ```
 
 ### Uninstalling the Debian package
@@ -97,18 +82,12 @@ sudo dpkg -i example_4-1.0.0-Linux.deb
 sudo dpkg -r example_4
 ```
 
-### Miscellanneous
+### RUNPATH settings
 
-Check the `RUNPATH` settings of the executable 
-
-```bash
-cd build_example_4
-chrpath -l example_4
-```
-
-Learn about the cmake options in this project by calling
+Check the `RUNPATH` settings of the executable. Note the difference between build directory and installed version! 
 
 ```bash
-cd build_example_4
-cmake -LH -N ../example_4
+chrpath -l build_example_4/example_4
+chrpath -l /opt/daixtrose/example_4-1.0.0/bin/example_4
 ```
+
