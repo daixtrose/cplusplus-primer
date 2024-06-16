@@ -26,7 +26,7 @@ $ ldd /opt/daixtrose/example_4-1.0.0/bin/example_4
         libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fabaa61a000)
 ```
 
-Setting `LD_LIBRARY_PATH` will change the situation for `libm` and `libgcc_s`, but `linux-vdso.so.1` (part of the kernel that's exported into every program's address space when it's loaded) and the dynamic linker `/lib64/ld-linux-x86-64.so.2` remains hardwired to its absolute system path (see [this article about it](https://www.baeldung.com/linux/dynamic-linker)): 
+Setting `LD_LIBRARY_PATH` will change the situation for `libm` and `libgcc_s`, but `linux-vdso.so.1` (part of the kernel that's exported into every program's address space when it's loaded) will not change and the dynamic linker `/lib64/ld-linux-x86-64.so.2` remains hardwired to its absolute system path (see [this article about it](https://www.baeldung.com/linux/dynamic-linker)): 
 
 ```bash
 $ export LD_LIBRARY_PATH=/opt/daixtrose/example_4-1.0.0/lib
