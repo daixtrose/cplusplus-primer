@@ -18,3 +18,13 @@ jobs:
         run: cmake --build build_example_3 --config Release --target example_3
       - name: create example_3 package
         run: cmake --build build_example_3 --config Release --target package
+      - name: check content of *.deb package
+        working-directory: build_example_3
+        run: |
+          CMAKE_PROJECT_VERSION=$(cmake --system-information | awk -F= '$1~/CMAKE_PROJECT_VERSION:STATIC/{print$2}')
+          CMAKE_SYSTEM_NAME=$(cmake -N --system-information | grep "CMAKE_SYSTEM_NAME \"" | cut -d\" -f2)
+          DEBIAN_PACKAGE_FILENAME="example_3-${CMAKE_PROJECT_VERSION}-${CMAKE_SYSTEM_NAME}.deb"
+          echo "Checking content of '$DEBIAN_PACKAGE_FILENAME'" 
+          dpkg -c DEBIAN_PACKAGE_FILENAME
+
+# TODO: check https://github.com/marketplace/actions/cmake-swiss-army-knife
