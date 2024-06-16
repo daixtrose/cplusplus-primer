@@ -1,18 +1,59 @@
 ## Summary
 
-This example shows a more elaborate configuration for a C++ project yielding an executable 
-- It relies on one library and uses CMake's [`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html) feature to include it
-- It has configuration for releasing packages for all major platforms
+This example shows a configuration for a C++ project yielding an executable 
+- It relies on one library and uses CMake's [`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html) feature to include it.
+- It has a configuration for releasing packages for all major platforms.
+- These are refined for the Linux platform.
 
 ## What's New
 
-This example extends and modifies [example_3](../example_3/) in such a way that the Debian package will install the software and its dependencies below `/opt/daixtrose/example_4-x.y.z` and set the RUNPATH variable such that the `bin` and `lib` libraries are searched for dependencies.
+### Summary
+
+This example extends and modifies [example_3](../example_3/) in such a way that the Debian package will install the software and its dependencies below the install path `/opt/daixtrose/example_4-x.y.z`. In addition, the `RUNPATH` variables of the executable **and** the library `library_1` are set such that the `bin` and `lib` subdirectories of the install path are searched for dependencies.
+
+## A Short Introduction to `RPATH`, `LD_LIBRARY_PATH`, and `RUNPATH` 
+
+`RPATH` and `RUNPATH` denote the run-time search path hard-coded in an executable file or library for [`ELF`](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) binaries. In contrast, `LD_LIBRARY_PATH` is an environment variable which is *also* considered during program start.  
+
+So, all three variables point to search paths for dependencies. A couple of years ago, all these variables were relevant. You can read about the situation in 2016 in [Amir Rachum's article](https://amir.rachum.com/shared-libraries/#rpath-and-runpath) or watch [Craig Scott's CppCon 2019 talk "Deep CMake for Library Authors"](https://www.youtube.com/watch?v=m0DwB4OvDXk) for a deeper understanding.
+
+When it was still available, `RPATH` was searched in *before* `LD_LIBRARY_PATH` while `RUNPATH` was searched in *after* `LD_LIBRARY_PATH`. The fact that `RPATH` was searched in *before* `LD_LIBRARY_PATH` yielded [security issues](https://en.wikipedia.org/wiki/Rpath#Security_considerations), and therefore `RPATH` was abandoned. 
+
+The corresponding `CMAKE` variable is still called `INSTALL_RPATH` because the decision whether `RUNPATH` or `RPATH` is set is [up to the linker](https://gitlab.kitware.com/cmake/cmake/-/issues/25683). On modern systems `RUNPATH` is set and `RPATH` remains empty.  
+
+### `RUNPATH` Settings
+
+Check the `RUNPATH` settings of the executable. Note the difference between build directory and installed version! 
+
+```bash
+chrpath -l /opt/daixtrose/example_4-1.0.0/bin/example_4
+```
+
+yields
+
+```
+/opt/daixtrose/example_4-1.0.0/bin/example_4: RUNPATH=$ORIGIN:$ORIGIN/../lib
+```
+
+while 
+
+```bash
+chrpath -l build_example_4/example_4
+```
+
+yields
+
+```
+build_example_4/example_4: RUNPATH=$ORIGIN/_deps/library_1-build:
+```
+
+Hint: You can change the settings for the `build_example_4/example_4` executable by adding explicit settings for `BUILD_RPATH` in the CMake configuration.
+
+### Impact on the Library Search
 
 Please note, that `ldconfig` on Linux systems is configured such that system dependencies like e.g. `libm`, `ld-linux-x86-64`, and `libgcc_s` installed on the system obtain preference over the ones installed with the tool in the `lib` directory. This can be seen by comparing the output of a file listing in the `lib` directory with the results from calling `ldd` on the executable: 
 
 ```bash
-$ chrpath -l  /opt/daixtrose/example_4-1.0.0/bin/example_4 
-/opt/daixtrose/example_4-1.0.0/bin/example_4: RUNPATH=$ORIGIN:$ORIGIN/../lib
 $ ls /opt/daixtrose/example_4-1.0.0/lib
 ld-linux-x86-64.so.2  libgcc_s.so.1    liblibrary_1.so.2      libm.so.6       libstdc++.so.6.0.30
 libc.so.6             liblibrary_1.so  liblibrary_1.so.2.0.0  libstdc++.so.6
@@ -40,11 +81,43 @@ $ ldd /opt/daixtrose/example_4-1.0.0/bin/example_4
         libgcc_s.so.1 => /opt/daixtrose/example_4-1.0.0/lib/libgcc_s.so.1 (0x00007f93346ed000)
 ```
 
+
+## `RUNPATH` for Dependencies
+
+Please note, that there is another difference between `RPATH` and `RUNPATH` that must be fixed for legacy systems: `RUNPATH` is not transitive, i.e. it is not propagated through the dependency tree but only applies for direct dependencies. 
+
+So, even if a specific directory is contained in your executable's `RUNPATH` settings, a library inside that runpath which is a dependency of a *direct* dependency can still be reported as missing, if the *direct* dependency does not have `RUNPATH` set accordingly.
+
+So, if there are transitive dependencies, then you have to keep an eye on those dependencies, too and set `RUNPATH` for these accordingly via a command similar to 
+
+```cmake
+set_target_properties(my_dependency 
+    PROPERTIES
+    BUILD_RPATH_USE_ORIGIN ON
+    INSTALL_RPATH "$ORIGIN:$ORIGIN/${libDir}")
+```
+
+The effect of the command is as follows: 
+
+```bash
+$ chrpath -l /opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so
+/opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so: RUNPATH=$ORIGIN:$ORIGIN/../lib
+```
+
+Give it a try: If you omit this command, `RUNPATH` is not set for `library_1`:
+
+```bash 
+$ chrpath -l /opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so
+/opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so: no rpath or runpath tag found.
+```
+
+Since `liblibrary_1.so` does not have its own non-system dependencies, the `RUNPATH` settings do not matter in `example_4`. It is only set for illustration.    
+
 ## Build Instructions and More
 
 ### Overview 
 
-Here we illustrate recommended ways to use `cmake`. In contrast to the earlier examples we call `cmake` from the top level and use it in a **portable way**. For completeness we also show the alternative variants which work on systems that have Gnu `make` available where you change into the build directory and call all commands from there. It is still recommended to get used to the portable versions. See [the CMake command line tool documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html) for details. 
+Here we illustrate recommended ways to use `cmake` in a **portable way**. See [the CMake command line tool documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html) for details. 
 
 ### Preparation
 
@@ -94,65 +167,4 @@ sudo dpkg -i build_example_4/example_4-1.0.0-Linux.deb
 
 ```bash
 sudo dpkg -r example_4
-```
-
-
-## RPATH, LD_LIBRARY_PATH, and RUNPATH
-
-`RPATH` and `RUNPATH` are properties of an executable or a library. `LD_LIBRARY_PATH` is an environment variable which is also considered 
-
-All three variables point to search paths for dependencies. A couple of years ago, all these ariables were relevant for ELF binaries. You can read about the situation in 2016 in [this article](https://amir.rachum.com/shared-libraries/#rpath-and-runpath).
-
-In short: When it was still available, `RPATH` was searched in before `LD_LIBRARY_PATH` while `RUNPATH` was searched in after `LD_LIBRARY_PATH`. This yielded quite some [security issues](https://en.wikipedia.org/wiki/Rpath#Security_considerations), and therefore `RPATH` was abandoned. 
-
-## RUNPATH settings
-
-Check the `RUNPATH` settings of the executable. Note the difference between build directory and installed version! 
-
-```bash
-chrpath -l /opt/daixtrose/example_4-1.0.0/bin/example_4
-```
-
-yields
-
-```
-/opt/daixtrose/example_4-1.0.0/bin/example_4: RUNPATH=$ORIGIN:$ORIGIN/../lib
-```
-
-while 
-
-```bash
-chrpath -l build_example_4/example_4
-```
-
-yields
-
-```
-build_example_4/example_4: RUNPATH=$ORIGIN/_deps/library_1-build:
-```
-
-You can change the settings for the uninstalled executable by adding explicit settings for `BUILD_RPATH` in the CMake configuration.
-
-## RUNPATH for Dependencies
-
-Also, for a given shared lib/executable its dependencies are searched according to the RPATH/RUNPATH specified by that dependency. So even if a path is in your executable RUNPATH, a library inside that runpath can still be missing, because its an indirect dependency of another library, which does not have RUNPATH (i.e it assumes that libs are put inside a globally accessible /etc/ld.so.conf location).
-
-```bash 
-$ chrpath -l /opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so
-/opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so: no rpath or runpath tag found.
-```
-
-So, if there are transitive dependencies, then you have to keep an eye on those dependencies, too and set `RUNPATH` for these accordingly via a command similar to 
-
-```cmake
-set_target_properties(my_dependency 
-    PROPERTIES
-    BUILD_RPATH_USE_ORIGIN ON
-    INSTALL_RPATH "$ORIGIN:$ORIGIN/${libDir}")
-```
-
-```bash
-$ sudo dpkg -i build_example_4/example_4-1.0.0-Linux.deb
-$ chrpath -l /opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so
-/opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so: RUNPATH=$ORIGIN:$ORIGIN/../lib
 ```
