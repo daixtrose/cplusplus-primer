@@ -96,7 +96,16 @@ sudo dpkg -i build_example_4/example_4-1.0.0-Linux.deb
 sudo dpkg -r example_4
 ```
 
-### RUNPATH settings
+
+## RPATH, LD_LIBRARY_PATH, and RUNPATH
+
+`RPATH` and `RUNPATH` are properties of an executable or a library. `LD_LIBRARY_PATH` is an environment variable which is also considered 
+
+All three variables point to search paths for dependencies. A couple of years ago, all these ariables were relevant for ELF binaries. You can read about the situation in 2016 in [this article](https://amir.rachum.com/shared-libraries/#rpath-and-runpath).
+
+In short: When it was still available, `RPATH` was searched in before `LD_LIBRARY_PATH` while `RUNPATH` was searched in after `LD_LIBRARY_PATH`. This yielded quite some [security issues](https://en.wikipedia.org/wiki/Rpath#Security_considerations), and therefore `RPATH` was abandoned. 
+
+## RUNPATH settings
 
 Check the `RUNPATH` settings of the executable. Note the difference between build directory and installed version! 
 
@@ -122,17 +131,9 @@ yields
 build_example_4/example_4: RUNPATH=$ORIGIN/_deps/library_1-build:
 ```
 
-You can change this behavior by adding explicit settings for `BUILD_RPATH` in the CMake configuration.
+You can change the settings for the uninstalled executable by adding explicit settings for `BUILD_RPATH` in the CMake configuration.
 
-## RPATH, LD_LIBRARY_PATH, and RUNPATH
-
-`RPATH` and `RUNPATH` are properties of an executable or a library. `LD_LIBRARY_PATH` is an environment variable which is also considered 
-
-All three variables point to search paths for dependencies. A couple of years ago, all these ariables were relevant for ELF binaries. You can read about the situation in 2016 in [this article](https://amir.rachum.com/shared-libraries/#rpath-and-runpath).
-
-In short: When it was still available, `RPATH` was searched in before `LD_LIBRARY_PATH` while `RUNPATH` was searched in after `LD_LIBRARY_PATH`. This yielded quite some [security issues](https://en.wikipedia.org/wiki/Rpath#Security_considerations), and therefore `RPATH` was abandoned. 
-
-## RUNPATH for dependencies
+## RUNPATH for Dependencies
 
 Also, for a given shared lib/executable its dependencies are searched according to the RPATH/RUNPATH specified by that dependency. So even if a path is in your executable RUNPATH, a library inside that runpath can still be missing, because its an indirect dependency of another library, which does not have RUNPATH (i.e it assumes that libs are put inside a globally accessible /etc/ld.so.conf location).
 
