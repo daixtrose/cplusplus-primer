@@ -23,7 +23,11 @@ A short introduction to C++. The examples build on top of each other. A special 
 - [Example 3](example_3/): 
   - How to include libraries using `FetchContent`
   - How to configure CPack to obtain release packages  
-
+- [Example 4](example_4/): 
+  - Install in a tool-specific directory
+  - Configure `RUNPATH`
+  - Illustrate the effect of `LD_LIBRARY_PATH`
+  
 ## Basic C++ Concepts Explained
 
 This part is not yet written.
