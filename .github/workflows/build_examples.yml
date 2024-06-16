@@ -28,6 +28,7 @@ jobs:
           DEBIAN_PACKAGE_FILENAME="${PACKAGE_NAME}.deb"
           RPM_PACKAGE_FILENAME="${PACKAGE_NAME}.rpm"
           echo "RPM filenme is ${RPM_PACKAGE_FILENAME}"
+          ls
           echo "Checking content of '$DEBIAN_PACKAGE_FILENAME'" 
           dpkg -c ${DEBIAN_PACKAGE_FILENAME}
           echo "DEBIAN_PACKAGE_FILENAME=${DEBIAN_PACKAGE_FILENAME}" >> $GITHUB_OUTPUT
