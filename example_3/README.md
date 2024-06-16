@@ -52,7 +52,7 @@ cd build_example_3
 cpack -G "DEB" # this yields the Debian package only
 ```
 
-You can inspect its content using  
+You can inspect the content of the Debian package using    
 
 ```bash
 sudo dpkg -c example_3-1.0.0-Linux.deb

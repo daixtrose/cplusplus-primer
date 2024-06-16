@@ -72,7 +72,7 @@ Call `cmake` from the top level like this:
 cmake --build build_example_4 --config Release --target package
 ```
 
-You can inspect its content using  
+You can inspect the content of the Debian package using  
 
 ```bash
 dpkg -c build_example_4/example_4-1.0.0-Linux.deb
