@@ -19,6 +19,7 @@ jobs:
       - name: create example_3 package
         run: cmake --build build_example_3 --config Release --target package
       - name: check content of *.deb package
+        id: check-packages
         working-directory: build_example_3
         run: |
           CMAKE_PROJECT_VERSION=$(cmake --system-information | awk -F= '$1~/CMAKE_PROJECT_VERSION:STATIC/{print$2}')
@@ -26,5 +27,12 @@ jobs:
           DEBIAN_PACKAGE_FILENAME="example_3-${CMAKE_PROJECT_VERSION}-${CMAKE_SYSTEM_NAME}.deb"
           echo "Checking content of '$DEBIAN_PACKAGE_FILENAME'" 
           dpkg -c ${DEBIAN_PACKAGE_FILENAME}
-
+          echo "DEBIAN_PACKAGE_FILENAME=${DEBIAN_PACKAGE_FILENAME}" >> $GITHUB_OUTPUT
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        ## if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ steps.check-packages.outputs.DEBIAN_PACKAGE_FILENAME }}
 # TODO: check https://github.com/marketplace/actions/cmake-swiss-army-knife
+# TODO: check https://github.com/actions/starter-workflows/blob/9f1db534549e072c20d5d1a79e0a4ff45a674caf/ci/cmake-multi-platform.yml#L20
+
