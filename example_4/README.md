@@ -8,7 +8,7 @@ This example shows a more elaborate configuration for a C++ project yielding an 
 
 This example extends and modifies [example_3](../example_3/) in such a way that the Debian package will install the software and its dependencies below `/opt/daixtrose/example_4-x.y.z` and set the RUNPATH variable such that the `bin` and `lib` libraries are searched for dependencies.
 
-Please note that `ldconfig` on Linux systems is configured such, that system dependencies like e.g. `libm`. `ld-linux-x86-64`, and `libgcc_s` which are installed on the system obtain preference over the ones installed with the tool in the `lib` directory: 
+Please note, that `ldconfig` on Linux systems is configured such that system dependencies like e.g. `libm`, `ld-linux-x86-64`, and `libgcc_s` installed on the system obtain preference over the ones installed with the tool in the `lib` directory. This can be seen by comparing the output of a file listing in the `lib` directory with the results from calling `ldd` on the executable: 
 
 ```bash
 $ chrpath -l  /opt/daixtrose/example_4-1.0.0/bin/example_4 
@@ -24,6 +24,20 @@ $ ldd /opt/daixtrose/example_4-1.0.0/bin/example_4
         libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fabaa63a000)
         /lib64/ld-linux-x86-64.so.2 (0x00007fabaab8d000)
         libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fabaa61a000)
+```
+
+Setting `LD_LIBRARY_PATH` will change the situation for `libm` and `libgcc_s`, but `linux-vdso.so.1` (part of the kernel that's exported into every program's address space when it's loaded) and the dynamic linker `/lib64/ld-linux-x86-64.so.2` remains hardwired to its absolute system path (see [this article about it](https://www.baeldung.com/linux/dynamic-linker)): 
+
+```bash
+$ export LD_LIBRARY_PATH=/opt/daixtrose/example_4-1.0.0/lib
+$ ldd /opt/daixtrose/example_4-1.0.0/bin/example_4
+        linux-vdso.so.1 (0x00007ffdd5799000)
+        liblibrary_1.so.2 => /opt/daixtrose/example_4-1.0.0/lib/liblibrary_1.so.2 (0x00007f9334c49000)
+        libstdc++.so.6 => /opt/daixtrose/example_4-1.0.0/lib/libstdc++.so.6 (0x00007f9334a1d000)
+        libc.so.6 => /opt/daixtrose/example_4-1.0.0/lib/libc.so.6 (0x00007f93347f4000)
+        libm.so.6 => /opt/daixtrose/example_4-1.0.0/lib/libm.so.6 (0x00007f933470d000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f9334c55000)
+        libgcc_s.so.1 => /opt/daixtrose/example_4-1.0.0/lib/libgcc_s.so.1 (0x00007f93346ed000)
 ```
 
 ## Build Instructions and More
