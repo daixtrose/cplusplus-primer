@@ -34,7 +34,6 @@ jobs:
         with:
           files: |
             build_example_3/${{ steps.check-packages.outputs.DEBIAN_PACKAGE_FILENAME }}
-          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           tag_name: latest
 # TODO: check https://github.com/marketplace/actions/cmake-swiss-army-knife
 # TODO: check https://github.com/actions/starter-workflows/blob/9f1db534549e072c20d5d1a79e0a4ff45a674caf/ci/cmake-multi-platform.yml#L20
