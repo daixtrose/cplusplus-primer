@@ -33,3 +33,4 @@
 
 build_*/*
 .vscode/*
+build/*
