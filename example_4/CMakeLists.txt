@@ -18,7 +18,7 @@ include(FetchContent)
 # since the code for every dependency is stored on disk exactly once.
 FetchContent_Declare(
     library_1
-    SOURCE_DIR ../library_1
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../library_1
 )
 
 FetchContent_MakeAvailable(library_1)
