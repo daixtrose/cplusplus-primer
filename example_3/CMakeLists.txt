@@ -18,7 +18,12 @@ include(FetchContent)
 # since the code for every dependency is stored on disk exactly once.
 FetchContent_Declare(
     library_1
-    SOURCE_DIR ../library_1
+
+    # Quote from Craig Scott, "Professional CMake":
+    # CMAKE_CURRENT_SOURCE_DIR is the directory of the CMakeLists.txt file currently being
+    # processed by CMake. It is updated each time a new file is processed as a result of an
+    # add_subdirectory() call and is restored back again when processing of that directory is complete.
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../library_1
 )
 
 FetchContent_MakeAvailable(library_1)

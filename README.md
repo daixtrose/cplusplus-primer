@@ -14,6 +14,7 @@ A short introduction to C++. The examples build on top of each other. A special 
   - Use for testing small C++ code snippets
 - [Craig Scott: "Professional CMake"](https://crascit.com/professional-cmake/)    
   - The one and only book you need about build systems 
+- [HSF - More Modern CMake](https://hsf-training.github.io/hsf-training-cmake-webpage/index.html)
 
 ## List of Subprojects
 

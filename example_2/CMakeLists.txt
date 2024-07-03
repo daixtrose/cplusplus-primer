@@ -11,7 +11,7 @@ add_executable(example_2
 # add_subdirectory(../library_1 ../build_library_1)
 # but be aware of parallel builds!
 # In general, keep builds separate. KISS principle!
-add_subdirectory(../library_1 build_library_1)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../library_1 build_library_1)
 
 target_link_libraries(
     ${PROJECT_NAME}

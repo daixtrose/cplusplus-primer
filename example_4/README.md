@@ -123,7 +123,7 @@ Here we illustrate recommended ways to use `cmake` in a **portable way**. See [t
 Create a subdirectory `build_example_4` and prepare the build system for the source in `example_4` in this subdirectory:
 
 ```bash
-cmake -D CMAKE_BUILD_TYPE=Release -B build_example_4 -S example_4
+cmake -D CMAKE_BUILD_TYPE=Release -B build_example_4 -S example_4 --fresh
 # for debug builds use   
 # cmake -D CMAKE_BUILD_TYPE=Debug -B build_example_4 -S example_4
 ```
@@ -133,7 +133,7 @@ cmake -D CMAKE_BUILD_TYPE=Release -B build_example_4 -S example_4
 Call `cmake` from the top level like this:
 
 ```bash
-cmake --build build_example_4 --config Release --target example_4
+cmake --build build_example_4 --config Release --target example_4 --clean-first
 ```
 
 ### Creating release packages
