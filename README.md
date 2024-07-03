@@ -6,15 +6,21 @@ A short introduction to C++. The examples build on top of each other. A special 
 
 ## Useful Weblinks
 
+### C++
+
 - [C++ Reference](https://en.cppreference.com/)
   - This is a carefully crafted encyclopedia of C++ features with examples
   - The first stop for any question 
 - [Matt Godbolt's Compiler Explorer](https://godbolt.org/) 
   - An online compiler tester
   - Use for testing small C++ code snippets
+
+### CMake 
+
 - [Craig Scott: "Professional CMake"](https://crascit.com/professional-cmake/)    
   - The one and only book you need about build systems 
 - [HSF - More Modern CMake](https://hsf-training.github.io/hsf-training-cmake-webpage/index.html)
+- [Building a Dual Shared and Static Library with CMake](https://alexreinking.com/blog/building-a-dual-shared-and-static-library-with-cmake.html)
 
 ## List of Subprojects
 
