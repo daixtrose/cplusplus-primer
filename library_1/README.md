@@ -4,7 +4,7 @@ This example shows a minimal configuration for a C++ project yielding a library.
 
 ## Build Instructions
 
-### Build Static Library
+### Build a Static Library
 
 ```bash
 mkdir build_library_1
@@ -13,7 +13,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=FALSE ../library_1
 make
 ```
 
-### Build Shared Library
+### Build a Shared Library
 
 ```bash
 mkdir build_library_1
