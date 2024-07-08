@@ -4,7 +4,7 @@ project(library_1 VERSION 1.0.0 LANGUAGES CXX DESCRIPTION "my description")
 
 # This option changes the implicit behavior of CMake
 # See https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html
-option(BUILD_SHARED_LIBS "Build as shared library" ON)
+option(BUILD_SHARED_LIBS "Build as shared library" OFF)
 
 add_library(${PROJECT_NAME})
 add_library(demo::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

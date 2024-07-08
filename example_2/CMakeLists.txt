@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.29)
 
 project(example_2 VERSION 1.0.0 LANGUAGES CXX)
 
+# This option changes the implicit behavior of CMake
+# See https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html
+option(BUILD_SHARED_LIBS "Build as shared library" ON)
+
 add_executable(example_2
     src/main.cpp
 )
