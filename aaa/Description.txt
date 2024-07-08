@@ -1,0 +1,3 @@
+This is a small geometric library
+
+This is meant for demo purposes only. 

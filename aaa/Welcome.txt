@@ -1,0 +1,1 @@
+Welcome to installing libaaa, the coolest library in the galaxy!
