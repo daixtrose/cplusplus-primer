@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.29)
 
-project(library_1 VERSION 1.0.0 LANGUAGES CXX DESCRIPTION "my description")
+project(library_1 
+    LANGUAGES CXX 
+    DESCRIPTION "my description")
 
 # This option changes the implicit behavior of CMake
 # See https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html
@@ -27,4 +29,4 @@ target_sources(${PROJECT_NAME}
     include/${PROJECT_NAME}/feature_set_1.hpp
     include/${PROJECT_NAME}/feature_set_2.hpp)
 
-target_include_directories(library_1 PUBLIC include)
+target_include_directories(${PROJECT_NAME} PUBLIC include)
