@@ -9,10 +9,10 @@ namespace modern {
 
 class Impl {
 private:
-    std::string s_;
+    std::string s_ { "<default value>" }; // with default member initializer (C++11)
 
 public:
-    std::string coolFeature() const { return "42"; }
+    std::string coolFeature() const { return s_; }
     void set(std::string s)
     {
         s_ = std::move(s);
