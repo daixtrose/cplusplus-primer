@@ -1,11 +1,21 @@
-#include <example_5/features.hpp>
+#include <example_5/consume_class_that_adheres_to_concept.hpp>
+#include <example_5/consume_class_with_interface.hpp>
+#include <example_5/impl_with_interface.hpp>
+#include <example_5/impl_without_interface.hpp>
 
 #include <iostream> // the legacy way to print stuff
 
 int main()
 {
-    Example e;
-    std::cerr << example_5::function_1(e) << '\n';
+    {
+        classic::Impl i;
+        std::cerr << classic::consume(i) << '\n';
+    }
+
+    {
+        modern::Impl i;
+        std::cerr << modern::consume(i) << '\n';
+    }
 
     return EXIT_SUCCESS;
 }
