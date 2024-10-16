@@ -8,7 +8,7 @@ namespace classic {
 /// @brief A typical interface definition via a class with pure virtual functions/methods.
 class ISuperCoolFeatures {
 public:
-    virtual std::string coolFeature() const = 0; // Pure virtual function
+    [[nodiscard]] virtual std::string coolFeature() const = 0; // Pure virtual function
     virtual void set(std::string s) = 0; // Pure virtual function
     virtual ~ISuperCoolFeatures() = default; // Virtual destructor
 };
