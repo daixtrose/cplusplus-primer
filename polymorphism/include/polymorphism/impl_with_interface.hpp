@@ -21,6 +21,6 @@ public:
     }
 };
 
-} // namespace modern
+} // namespace classic
 
 #endif // IMPL_WITH_INTERFACE_HPP
