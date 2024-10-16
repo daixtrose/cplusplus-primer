@@ -3,7 +3,7 @@
 
 namespace modern {
 
-// Explicit template instatiation
+// Explicit template instantiation
 template std::string consume<Impl>(Impl&);
 
 }
