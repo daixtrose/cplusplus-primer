@@ -32,4 +32,5 @@ target_link_libraries(test_consume PRIVATE polymorphism_lib)
 add_test(
     NAME test_consume
     COMMAND test_consume
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
