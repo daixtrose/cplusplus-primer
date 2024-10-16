@@ -1,5 +1,5 @@
-#ifndef CONSUME_CLASS_WITH_INTERFACE_HPP
-#define CONSUME_CLASS_WITH_INTERFACE_HPP
+#ifndef POYMORPHISM_CONSUME_CLASS_WITH_INTERFACE_HPP
+#define POYMORPHISM_CONSUME_CLASS_WITH_INTERFACE_HPP
 
 #include <polymorphism/i_super_cool_features.hpp>
 
@@ -9,4 +9,4 @@ std::string consume(ISuperCoolFeatures& f);
 
 } // namespace classic
 
-#endif // CONSUME_CLASS_WITH_INTERFACE_HPP
+#endif // POYMORPHISM_CONSUME_CLASS_WITH_INTERFACE_HPP

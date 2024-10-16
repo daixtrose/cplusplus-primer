@@ -1,5 +1,5 @@
-#ifndef IMPL_WITHOUT_INTERFACE_HPP
-#define IMPL_WITHOUT_INTERFACE_HPP
+#ifndef POYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP
+#define POYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP
 
 #include <polymorphism/has_super_cool_features.hpp>
 
@@ -24,4 +24,4 @@ static_assert(has_super_cool_features<Impl>);
 
 } // namespace modern
 
-#endif // IMPL_WITHOUT_INTERFACE_HPP
+#endif // POYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP

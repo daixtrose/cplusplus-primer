@@ -1,5 +1,5 @@
-#ifndef EXAMPLE_5_FEATURES_HPP
-#define EXAMPLE_5_FEATURES_HPP
+#ifndef POYMORPHISM_HAS_SUPER_COOL_FEATURES_HPP
+#define POYMORPHISM_HAS_SUPER_COOL_FEATURES_HPP
 
 #include <string>
 
@@ -14,4 +14,4 @@ concept has_super_cool_features = requires(T t, std::string s) {
 
 } // namespace modern
 
-#endif // EXAMPLE_5_FEATURES_HPP
+#endif // POYMORPHISM_HAS_SUPER_COOL_FEATURES_HPP
