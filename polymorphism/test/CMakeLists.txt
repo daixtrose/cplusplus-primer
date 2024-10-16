@@ -15,7 +15,8 @@ add_library(polymorphism_lib
 )
 
 target_compile_features(polymorphism_lib PUBLIC cxx_std_23)
-target_include_directories(polymorphism_lib PUBLIC ../include)
+target_include_directories(polymorphism_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include)
+target_include_directories(polymorphism_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 
 add_executable(test_consume
     test_consume.cpp
