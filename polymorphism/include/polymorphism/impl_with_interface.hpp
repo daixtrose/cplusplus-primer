@@ -2,7 +2,7 @@
 #define IMPL_WITH_INTERFACE_HPP
 
 // make the inteface defintion visible
-#include <example_5/i_super_cool_features.hpp>
+#include <polymorphism/i_super_cool_features.hpp>
 
 #include <string>
 

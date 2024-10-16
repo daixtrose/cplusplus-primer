@@ -1,7 +1,7 @@
-#include <example_5/consume_class_that_adheres_to_concept.hpp>
-#include <example_5/consume_class_with_interface.hpp>
-#include <example_5/impl_with_interface.hpp>
-#include <example_5/impl_without_interface.hpp>
+#include <polymorphism/consume_class_that_adheres_to_concept.hpp>
+#include <polymorphism/consume_class_with_interface.hpp>
+#include <polymorphism/impl_with_interface.hpp>
+#include <polymorphism/impl_without_interface.hpp>
 
 #include <iostream> // the legacy way to print stuff
 

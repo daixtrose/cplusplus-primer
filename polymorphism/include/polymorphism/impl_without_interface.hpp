@@ -1,7 +1,7 @@
 #ifndef IMPL_WITHOUT_INTERFACE_HPP
 #define IMPL_WITHOUT_INTERFACE_HPP
 
-#include <example_5/has_super_cool_features.hpp>
+#include <polymorphism/has_super_cool_features.hpp>
 
 #include <string>
 

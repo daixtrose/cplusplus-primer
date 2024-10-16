@@ -1,4 +1,4 @@
-#include <example_5/consume_class_with_interface.hpp>
+#include <polymorphism/consume_class_with_interface.hpp>
 
 namespace classic {
 

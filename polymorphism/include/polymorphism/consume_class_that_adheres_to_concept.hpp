@@ -1,7 +1,7 @@
 #ifndef CONSUME_CLASS_THAT_ADHERES_TO_CONCEPT_HPP
 #define CONSUME_CLASS_THAT_ADHERES_TO_CONCEPT_HPP
 
-#include <example_5/has_super_cool_features.hpp>
+#include <polymorphism/has_super_cool_features.hpp>
 
 namespace modern {
 

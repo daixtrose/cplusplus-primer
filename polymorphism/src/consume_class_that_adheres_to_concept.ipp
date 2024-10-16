@@ -1,4 +1,4 @@
-#include <example_5/consume_class_that_adheres_to_concept.hpp>
+#include <polymorphism/consume_class_that_adheres_to_concept.hpp>
 
 #include <string>
 

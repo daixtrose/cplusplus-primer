@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.29)
 
-project(example_5 VERSION 1.0.0 LANGUAGES CXX)
+project(polymorphism VERSION 1.0.0 LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
     src/consume_class_with_interface.cpp

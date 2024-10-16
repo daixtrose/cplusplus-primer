@@ -1,4 +1,4 @@
-#include <example_5/impl_without_interface.hpp>
+#include <polymorphism/impl_without_interface.hpp>
 
 #include <../src/consume_class_that_adheres_to_concept.ipp>
 
