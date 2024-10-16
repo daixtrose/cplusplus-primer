@@ -12,8 +12,8 @@ private:
     std::string s_ { "<default value>" }; // with default member initializer (C++11)
 
 public:
-    std::string coolFeature() const { return s_; }
-    void set(std::string s)
+    std::string coolFeature() const noexcept { return s_; }
+    void set(std::string s) noexcept
     {
         s_ = std::move(s);
     }
