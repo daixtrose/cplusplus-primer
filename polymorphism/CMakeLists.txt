@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.29)
 
 project(polymorphism VERSION 1.0.0 LANGUAGES CXX)
 
+# Enable testing by default when this is the top-level project
 option(POLYMORPHISM_ENABLE_TESTING "enable testing for polymorphism" ${PROJECT_IS_TOP_LEVEL})
 
 add_executable(${PROJECT_NAME}
