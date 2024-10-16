@@ -1,3 +1,5 @@
+# C++ Polymorphism Example
+
 ## Summary
 
 This example shows two different ways to implement [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) in C++:
