@@ -40,6 +40,12 @@ jobs:
             build_example_3/${{ steps.check-packages.outputs.DEBIAN_PACKAGE_FILENAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: latest
+      - name: Build and test polymorphism
+        run: |
+          cmake -D CMAKE_BUILD_TYPE=Debug -B build_polymorphism -S polymorphism
+          VERBOSE=1 cmake --build build_polymorphism --clean-first --config Debug --target all --parallel
+          ctest --test-dir build_polymorphism  --output-on-failure --build-config Debug
+
 # TODO: check https://github.com/marketplace/actions/cmake-swiss-army-knife
 # TODO: check https://github.com/actions/starter-workflows/blob/9f1db534549e072c20d5d1a79e0a4ff45a674caf/ci/cmake-multi-platform.yml#L20
 
