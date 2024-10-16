@@ -3,9 +3,9 @@
 This example shows two different ways to implement [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) in C++:
 
 1. The classic approach using an [abstract class](https://en.cppreference.com/w/cpp/language/abstract_class) which is used to define an interface and from which the implementation inherits.
-2. The modern approach using [concepts](https://en.cppreference.com/w/cpp/language/constraints) to declare features a type must have. 
+2. The modern approach using [concepts](https://en.cppreference.com/w/cpp/language/constraints) to declare features a type must have.
 
-In addition, this directory contains an example about how to perform unit tests using the [ut testing framework](https://github.com/boost-ext/ut). 
+In addition, this directory contains an example about how to perform unit tests using the [ut testing framework](https://github.com/boost-ext/ut).
 
 ## Build Instructions 
 
