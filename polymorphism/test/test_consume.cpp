@@ -22,5 +22,6 @@ int main()
         modern::Impl i;
         expect("<default value>"s == i.coolFeature());
         expect("The answer to all questions is 42"s == modern::consume(i));
+        expect("42"s == i.coolFeature());
     };
 }
