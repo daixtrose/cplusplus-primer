@@ -16,7 +16,7 @@ Create a subdirectory `build_polymorphism` and prepare the build system for the 
 ```bash
 cmake -D CMAKE_BUILD_TYPE=Release -B build_polymorphism -S polymorphism
 ```
-For debug builds use   
+For debug builds use
 
 ```bash
 cmake -D CMAKE_BUILD_TYPE=Debug -B build_polymorphism -S polymorphism
@@ -79,7 +79,7 @@ public:
 };
 ```
 
-A variable (aka instatiation) of type `Impl` can be passed as argument to any function that expects an argument of its interface type `ISuperCoolFeatures`. 
+A variable (aka instantiation) of type `Impl` can be passed as argument to any function that expects an argument of its interface type `ISuperCoolFeatures`. A variable (aka instatiation) of type `Impl` can be passed as argument to any function that expects an argument of its interface type `ISuperCoolFeatures`. 
 
 In our example we define a function which has one argument of type `ISuperCoolFeatures`, and returns a `std::string`:  
 
@@ -106,7 +106,7 @@ This means that objects of completely unrelated classes can be passed as argumen
 
 From a code structuring point of view, this means that the cohesion between different parts of the code is reduced. 
 
-In this example we have defined such an interface specification as a concept:
+In this example, we have defined such an interface specification as a concept:
 
 ```c++
 template <typename T>
@@ -162,7 +162,7 @@ In this example, we use explicit instantiation to show the possibility to clearl
 You can find the definition of `consume` in `src/consume_class_that_adheres_to_concept.ipp` which is then included into `src/consume_class_that_adheres_to_concept.cpp`. In the latter file we also place all explicit instantiations of `consume`:
 
 ```c++
-// explicit template instatiation
+// explicit template instantiation
 template std::string consume<Impl>(Impl&);
 ```
 
