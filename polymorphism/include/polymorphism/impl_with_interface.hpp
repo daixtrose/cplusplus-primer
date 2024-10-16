@@ -1,5 +1,5 @@
-#ifndef IMPL_WITH_INTERFACE_HPP
-#define IMPL_WITH_INTERFACE_HPP
+#ifndef POYMORPHISM_IMPL_WITH_INTERFACE_HPP
+#define POYMORPHISM_IMPL_WITH_INTERFACE_HPP
 
 // make the inteface defintion visible
 #include <polymorphism/i_super_cool_features.hpp>
@@ -23,4 +23,4 @@ public:
 
 } // namespace classic
 
-#endif // IMPL_WITH_INTERFACE_HPP
+#endif // POYMORPHISM_IMPL_WITH_INTERFACE_HPP
