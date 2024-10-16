@@ -171,7 +171,7 @@ As an alternative, the *definition* of `consume` could be in the header `include
 
 ## Testing
 
-In this example, I use [µt](https://github.com/boost-ext/ut) as testing framework for no good reason. It looks promising and lightweight and it was written by [Krzysztof Jusiak](https://github.com/krzysztof-jusiak) whom I adore for his outstanding C++ programming skills and his [C++ Tip of The Week](https://github.com/tip-of-the-week/cpp) collection of crazy C++ riddles.   
+In this example, I use [µt](https://github.com/boost-ext/ut) as testing framework for no good reason. It looks promising and lightweight, and it was written by [Krzysztof Jusiak](https://github.com/krzysztof-jusiak) whom I adore for his outstanding C++ programming skills and his [C++ Tip of The Week](https://github.com/tip-of-the-week/cpp) collection of crazy C++ riddles.   
 
 The one-header version of it is pulled into the project via the CMake call
 
