@@ -20,7 +20,8 @@ public:
 };
 
 // Check if the class adheres to the concept (i.e. has the interface we want it to have).
-static_assert(has_super_cool_features<Impl>);
+static_assert(has_super_cool_features<Impl>,
+    "Impl class does not meet the requirements of the has_super_cool_features concept");
 
 } // namespace modern
 
