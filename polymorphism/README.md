@@ -23,7 +23,7 @@ cmake -D CMAKE_BUILD_TYPE=Debug -B build_polymorphism -S polymorphism
 ```
 
 
-### Building the `polymorphism` project:
+### Building the `polymorphism` project
 
 Call `cmake` from the top level like this:
 
