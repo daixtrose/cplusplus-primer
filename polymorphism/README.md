@@ -59,7 +59,7 @@ public:
 };
 ```
 
-Instead of defining the member function body (which is possible in a regular base class), the member functions of an abstract interface class are declared "pure virtual" by adding `= 0` to their declaration. 
+Instead of defining the member function body (which is possible in a regular class), the member functions of an abstract interface class are declared "pure virtual" by adding `= 0` to their declaration. 
 
 Any so-called **implementation** of the interface publicly inherits from this abstract base class and then declares and defines member functions that match the declarations of the pure virtual functions in the abstract interface class:   
 
@@ -78,9 +78,9 @@ public:
 };
 ```
 
-A variable (aka instantiation) of type `Impl` can be passed as argument to any function that expects an argument of its interface type `ISuperCoolFeatures`. A variable (aka instatiation) of type `Impl` can be passed as argument to any function that expects an argument of its interface type `ISuperCoolFeatures`. 
+A variable (aka instantiation) of type `Impl` can be passed as argument to any function that expects an argument of its interface type `ISuperCoolFeatures`.  
 
-In our example we define a function which has one argument of type `ISuperCoolFeatures`, and returns a `std::string`:  
+In our example, we define a function which has one argument of type `ISuperCoolFeatures`, and returns a `std::string`:  
 
 ```c++
 std::string consume(ISuperCoolFeatures& f);
@@ -101,7 +101,7 @@ In modern C++, interfaces can also be defined via [concepts](https://en.cpprefer
 
 It also has a great advantage that it is non-intrusive, i.e. it does not require a concrete class to inherit from a certain interface class. This is of advantage when you are not owner of the code of a class that you want to use and cannot change its declaration and definition.
 
-This means that objects of completely unrelated classes can be passed as arguments to a member function (aka method) or a free function, if they all have certain memeber functions defined.
+This means that objects of completely unrelated classes can be passed as arguments to a member function (aka method) or a free function, if they all have certain member functions defined.
 
 From a code structuring point of view, this means that the cohesion between different parts of the code is reduced. 
 
@@ -165,7 +165,7 @@ You can find the definition of `consume` in `src/consume_class_that_adheres_to_c
 template std::string consume<Impl>(Impl&);
 ```
 
-Als an alternative, the *definition* of `consume` could be in the header `include/polymorphism/consume_class_that_adheres_to_concept.hpp`. Then the explicit template instantiation is no longer required. 
+As an alternative, the *definition* of `consume` could be in the header `include/polymorphism/consume_class_that_adheres_to_concept.hpp`. Then the explicit template instantiation is no longer required. 
 
 ## Testing
 
