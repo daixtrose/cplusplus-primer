@@ -1,5 +1,5 @@
-#ifndef POYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP
-#define POYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP
+#ifndef POLYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP
+#define POLYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP
 
 #include <polymorphism/has_super_cool_features.hpp>
 
@@ -12,7 +12,7 @@ private:
     std::string s_ { "<default value>" }; // with default member initializer (C++11)
 
 public:
-    std::string coolFeature() const noexcept { return s_; }
+    [[nodiscard]] std::string coolFeature() const noexcept { return s_; }
     void set(std::string s) noexcept
     {
         s_ = std::move(s);
@@ -25,4 +25,4 @@ static_assert(has_super_cool_features<Impl>,
 
 } // namespace modern
 
-#endif // POYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP
+#endif // POLYMORPHISM_IMPL_WITHOUT_INTERFACE_HPP
