@@ -3,6 +3,8 @@
 
 #include <polymorphism/has_super_cool_features.hpp>
 
+#include <string>
+
 namespace modern {
 
 // declaration with concept constraint
