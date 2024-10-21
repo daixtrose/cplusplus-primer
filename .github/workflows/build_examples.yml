@@ -14,10 +14,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: configure
         run: cmake -D CMAKE_BUILD_TYPE=Release -B build_example_3 -S example_3
+
       - name: build example_3
         run: cmake --build build_example_3 --config Release --target example_3
+
       - name: create example_3 package
         run: cmake --build build_example_3 --config Release --target package
+
       - name: check content of *.deb package
         id: check-packages
         working-directory: build_example_3
@@ -31,6 +34,7 @@ jobs:
           echo "RPM_PACKAGE_FILENAME=${RPM_PACKAGE_FILENAME}" >> $GITHUB_OUTPUT
           echo "Checking content of '$DEBIAN_PACKAGE_FILENAME'" 
           dpkg -c ${DEBIAN_PACKAGE_FILENAME}
+
       - name: Release
         uses: softprops/action-gh-release@v2
         ## if: startsWith(github.ref, 'refs/tags/')
@@ -40,6 +44,15 @@ jobs:
             build_example_3/${{ steps.check-packages.outputs.DEBIAN_PACKAGE_FILENAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: latest
+
+      - name: Configure polymorphism
+        run: cmake -D CMAKE_BUILD_TYPE=Debug -B build_polymorphism -S polymorphism
+
+      - name: Build polymorphism
+        run: cmake --build build_polymorphism --config Debug --target all --parallel
+
+      - name: Test polymorphism
+        run: ctest --test-dir build_polymorphism --output-on-failure --build-config Debug
 # TODO: check https://github.com/marketplace/actions/cmake-swiss-army-knife
 # TODO: check https://github.com/actions/starter-workflows/blob/9f1db534549e072c20d5d1a79e0a4ff45a674caf/ci/cmake-multi-platform.yml#L20
 
