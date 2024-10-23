@@ -1,6 +1,7 @@
 #ifndef POLYMORPHISM_MOCKING_HPP
 #define POLYMORPHISM_MOCKING_HPP
 
+#include <atomic>
 #include <cstddef>
 #include <list>
 #include <string>
@@ -9,7 +10,7 @@ namespace mocking {
 
 struct Mock {
     std::list<std::string> collectedSetArguments;
-    mutable std::size_t numberOfCallsToCoolFeature { 0 };
+    mutable std::atomic<std::size_t> numberOfCallsToCoolFeature { 0 };
 
     std::string coolFeature() const
     {

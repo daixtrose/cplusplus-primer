@@ -56,7 +56,7 @@ int main()
             when("I pass it to a function that expects an argument that fulfils the constraints") = [&] {
                 auto result = modern::consume(impl);
 
-                then("set() should be called twice") = [=] {
+                then("set() should be called twice") = [&] {
                     expect(EXPECTED_COOLFEATURE_CALLS == impl.numberOfCallsToCoolFeature);
                 };
 
@@ -64,7 +64,7 @@ int main()
                     expect("The answer to all questions is 42"s == result);
                 };
 
-                then("the state of the argument should be modified as a side effect") = [=] {
+                then("the state of the argument should be modified as a side effect") = [&] {
                     expect("42"s == impl.coolFeature());
                 };
             };
