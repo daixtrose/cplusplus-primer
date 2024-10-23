@@ -46,27 +46,28 @@ int main()
               };
           };
 
-    "[modern mock]"_test
-        = [] {
-              given("I have a an mock that adheres to a concept") = [] {
-                  mocking::Mock impl;
-                  expect("<default value>"s == impl.coolFeature());
+    "[modern mock]"_test = [] {
+        static constexpr auto EXPECTED_COOLFEATURE_CALLS = 2; // Called once for initial value and once for modification
+        given("I have a an mock that adheres to a concept") = [] {
+            mocking::Mock impl;
 
-                  when("I pass it to a function that expects an argument that fulfils the constraints") = [&] {
-                      auto result = modern::consume(impl);
+            expect("<default value>"s == impl.coolFeature());
 
-                      then("set() should be called twice") = [=] {
-                          expect(2 == impl.numberOfCallsToCoolFeature);
-                      };
+            when("I pass it to a function that expects an argument that fulfils the constraints") = [&] {
+                auto result = modern::consume(impl);
 
-                      then("the answer to all questions should be given") = [=] {
-                          expect("The answer to all questions is 42"s == result);
-                      };
+                then("set() should be called twice") = [=] {
+                    expect(EXPECTED_COOLFEATURE_CALLS == impl.numberOfCallsToCoolFeature);
+                };
 
-                      then("the state of the argument should be modified as a side effect") = [=] {
-                          expect("42"s == impl.coolFeature());
-                      };
-                  };
-              };
-          };
+                then("the answer to all questions should be given") = [=] {
+                    expect("The answer to all questions is 42"s == result);
+                };
+
+                then("the state of the argument should be modified as a side effect") = [=] {
+                    expect("42"s == impl.coolFeature());
+                };
+            };
+        };
+    };
 }
