@@ -48,8 +48,8 @@ int main()
 
     "[modern mock]"_test = [] {
         static constexpr auto EXPECTED_COOLFEATURE_CALLS = 2; // coolFeature() is called:
-                                                             // 1. During initial value check (line 54)
-                                                             // 2. During side effect verification (line 68)
+                                                              // 1. During initial value check (line 56)
+                                                              // 2. During side effect verification (line 70)
         given("I have a an mock that adheres to a concept") = [] {
             mocking::Mock impl;
 
