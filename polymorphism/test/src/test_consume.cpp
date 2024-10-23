@@ -5,6 +5,8 @@
 #include <polymorphism/impl_with_interface.hpp>
 #include <polymorphism/impl_without_interface.hpp>
 
+#include <test_polymorphism/mocking.hpp>
+
 int main()
 {
     using namespace boost::ut;
@@ -32,6 +34,30 @@ int main()
 
                   when("I pass it to a function that expects an argument that fulfils the constraints") = [&] {
                       auto result = modern::consume(impl);
+
+                      then("the answer to all questions should be given") = [=] {
+                          expect("The answer to all questions is 42"s == result);
+                      };
+
+                      then("the state of the argument should be modified as a side effect") = [=] {
+                          expect("42"s == impl.coolFeature());
+                      };
+                  };
+              };
+          };
+
+    "[modern mock]"_test
+        = [] {
+              given("I have a an mock that adheres to a concept") = [] {
+                  mocking::Mock impl;
+                  expect("<default value>"s == impl.coolFeature());
+
+                  when("I pass it to a function that expects an argument that fulfils the constraints") = [&] {
+                      auto result = modern::consume(impl);
+
+                      then("set() should be called twice") = [=] {
+                          expect(2 == impl.numberOfCallsToCoolFeature);
+                      };
 
                       then("the answer to all questions should be given") = [=] {
                           expect("The answer to all questions is 42"s == result);
