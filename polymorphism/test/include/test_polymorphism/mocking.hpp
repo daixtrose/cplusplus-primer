@@ -1,5 +1,5 @@
-#ifndef POYMORPHISM_MOCKING_HPP
-#define POYMORPHISM_MOCKING_HPP
+#ifndef POLYMORPHISM_MOCKING_HPP
+#define POLYMORPHISM_MOCKING_HPP
 
 #include <cstddef>
 #include <list>
