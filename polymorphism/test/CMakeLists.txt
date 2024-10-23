@@ -20,8 +20,8 @@ target_include_directories(polymorphism_lib
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 
 add_executable(test_consume
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/test_consume.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/mocking.cpp
+    src/test_consume.cpp
+    src/mocking.cpp
 )
 
 target_compile_features(test_consume PUBLIC cxx_std_23)
