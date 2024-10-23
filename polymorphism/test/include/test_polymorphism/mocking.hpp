@@ -12,6 +12,11 @@ struct Mock {
     std::list<std::string> collectedSetArguments;
     mutable std::atomic<std::size_t> numberOfCallsToCoolFeature { 0 };
 
+    /**
+     * @brief Returns the last set value or a default value if none exists.
+     * @note Thread-safe. Multiple concurrent calls are safe.
+     * @return The last set string or "<default value>" if no strings were set
+     */
     std::string coolFeature() const
     {
         ++numberOfCallsToCoolFeature;
