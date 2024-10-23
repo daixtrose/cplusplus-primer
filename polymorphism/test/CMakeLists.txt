@@ -27,10 +27,12 @@ add_executable(test_consume
 target_compile_features(test_consume PUBLIC cxx_std_23)
 target_include_directories(test_consume
     PRIVATE
+    # Library includes
     ${CMAKE_CURRENT_SOURCE_DIR}/../include
-    "${ut_SOURCE_DIR}"
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src
+    # Test includes
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src)
+    "${ut_SOURCE_DIR}")
 
 target_link_libraries(test_consume PRIVATE polymorphism_lib)
 
