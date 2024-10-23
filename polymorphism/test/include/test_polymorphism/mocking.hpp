@@ -15,11 +15,9 @@ struct Mock {
     {
         ++numberOfCallsToCoolFeature;
 
-        if (0 != collectedSetArguments.size()) {
-            return collectedSetArguments.back();
-        } else {
-            return "<default value>";
-        }
+        return collectedSetArguments.empty()
+            ? "<default value>"
+            : collectedSetArguments.back();
     }
 
     void set(std::string s)
@@ -30,4 +28,4 @@ struct Mock {
 
 } // namespace mocking
 
-#endif // POYMORPHISM_MOCKING_HPP
+#endif // POLYMORPHISM_MOCKING_HPP
