@@ -21,8 +21,16 @@ struct Mock {
             : collectedSetArguments.back();
     }
 
+    /**
+     * @brief Stores a string value for later retrieval by coolFeature
+     * @param s The string to store (must not be empty)
+     * @throws std::invalid_argument if the string is empty
+     */
     void set(std::string s)
     {
+        if (s.empty()) {
+            throw std::invalid_argument("Empty strings are not allowed");
+        }
         collectedSetArguments.emplace_back(std::move(s));
     }
 };
