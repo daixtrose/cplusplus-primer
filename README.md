@@ -15,7 +15,8 @@ A short introduction to C++. The examples build on top of each other. A special 
   - An online compiler tester
   - Use for testing small C++ code snippets
 - [Jason Turner's GitHub landing page](https://github.com/lefticus)
-  - [YouTube channel C++ Weekly](https://www.youtube.com/@cppweekly) 
+  - [YouTube channel C++ Weekly](https://www.youtube.com/@cppweekly)
+- [MattPD's C++ Links](https://github.com/MattPD/cpplinks)
 
 ### CMake 
 
