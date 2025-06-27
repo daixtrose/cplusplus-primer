@@ -153,7 +153,7 @@ dpkg -c build_example_4/example_4-1.0.0-Linux.deb
 The procedure is similar for rpm files:
 
 ```bash
-rpm -qlp build_example_4/example_4-1.0.0-Linux.rpm
+rpm -qlpv build_example_4/example_4-1.0.0-Linux.rpm
 ```
 
 ### Installing the Debian Package
