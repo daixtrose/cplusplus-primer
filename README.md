@@ -42,3 +42,9 @@ A short introduction to C++. The examples build on top of each other. A special 
 
 This part is not yet written.
 
+### Polymorphism in C++ 
+
+Please take a look at [the slides](https://www.daixtrose.de/talks/cplusplus-primer/talks/polymorphism/presentation.html#1) and the [source code](polymorphism).
+
+
+
