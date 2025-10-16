@@ -15,17 +15,24 @@ add_library(polymorphism_lib
 )
 
 target_compile_features(polymorphism_lib PUBLIC cxx_std_23)
-target_include_directories(polymorphism_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include)
-target_include_directories(polymorphism_lib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
+target_include_directories(polymorphism_lib
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 
 add_executable(test_consume
-    test_consume.cpp
+    src/test_consume.cpp
+    src/mocking.cpp
 )
 
 target_compile_features(test_consume PUBLIC cxx_std_23)
-
-target_include_directories(test_consume PUBLIC ../include)
-target_include_directories(test_consume PUBLIC "${ut_SOURCE_DIR}")
+target_include_directories(test_consume
+    PRIVATE
+    # Library includes
+    ${CMAKE_CURRENT_SOURCE_DIR}/../include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src
+    # Test includes
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    "${ut_SOURCE_DIR}")
 
 target_link_libraries(test_consume PRIVATE polymorphism_lib)
 
